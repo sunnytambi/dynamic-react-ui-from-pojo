@@ -20,10 +20,11 @@ Currently it supports
 > *   placeholder
 > *   name
 > *   type
+> *   disabled
 
 **Todo:**
 
 *   [ ] Add support for more data types - Array, ...
 *   [ ] Add support for skipping a field from the schema (e.g. ID, ...)
-*   [ ] Add support for more html fields - readonly, password, date
+*   [ ] Add support for more html fields - password, date
 *   [ ] Better form submission handling
