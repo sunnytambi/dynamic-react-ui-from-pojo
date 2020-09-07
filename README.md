@@ -8,7 +8,7 @@ It can convert a Java pojo to corresponding React form
 
 Currently it supports
 
->  Java data types:
+> Java data types:
 > 
 > *   String
 > *   Integer
@@ -25,5 +25,5 @@ Currently it supports
 
 *   [ ] Add support for more data types - Array, ...
 *   [ ] Add support for skipping a field from the schema (e.g. ID, ...)
-*   [ ] Add support for more html fields - password, date
+*   [ ] Add support for more html fields - readonly, password, date
 *   [ ] Better form submission handling
