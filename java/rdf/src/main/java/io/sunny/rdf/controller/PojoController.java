@@ -1,6 +1,14 @@
 package io.sunny.rdf.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.github.reinert.jjschema.JsonSchemaGenerator;
+import com.github.reinert.jjschema.SchemaGeneratorBuilder;
+import com.github.reinert.jjschema.exception.TypeException;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,15 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.sunny.rdf.pojo.Employee;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.github.reinert.jjschema.exception.TypeException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.github.reinert.jjschema.JsonSchemaGenerator;
-import com.github.reinert.jjschema.SchemaGeneratorBuilder;
 
 @RestController
 @RequestMapping("/api")
@@ -34,8 +33,13 @@ public class PojoController {
     @GetMapping(value="/employees", produces = "application/json")
     public String getEmployeePojo() throws JsonProcessingException, TypeException
     {
+        // JsonSchemaFactory schemaFactory = new JsonSchemaV4Factory();
+        // schemaFactory.setAutoPutDollarSchema(true);
+        
+        // JsonNode schemaNode = schemaFactory.createSchema(Employee.class);
+
         // get the draft 4 schema builder
-        JsonSchemaGenerator v4generator = SchemaGeneratorBuilder.draftV4Schema().build();
+        JsonSchemaGenerator v4generator = SchemaGeneratorBuilder.draftV4Schema().sortProperties(false).build();
         
         // use the schema builder to generate JSON schema from Java class
         JsonNode schemaNode = v4generator.generateSchema(Employee.class);
